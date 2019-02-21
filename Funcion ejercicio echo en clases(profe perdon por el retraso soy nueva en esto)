@@ -1,0 +1,8 @@
+float POTEN( float x, float y )
+{ int n=0, p=0;
+    while (n<y)
+	{ n++;
+	p=p*x;
+	}
+	return p;
+}
