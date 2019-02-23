@@ -1,0 +1,52 @@
+#include "stdafx.h"
+#include <iostream>
+#include "conio.h"
+#include "math.h"
+
+using namespace std;
+
+float distriminante (float a, float b, float c);
+
+void main()
+
+{ float a,b,c,x1,aux,x2; int op;
+
+  do
+     {cout<<"Ingrese a: ";cin>>a;
+      }while(a==0);
+
+        cout<<"Ingrese b: ";
+        cin>>b;
+        cout<<"Ingrese c: ";
+        cin>>c;
+  aux= distriminante (a,b,c);
+  
+      if(aux==0)
+      {
+         x1=b/2*a;
+         cout<<"solucion unica es: "<<x1<<endl;
+      }
+     else
+        { if(aux>0)
+            {
+               x1=((-b)+(sqrt(aux))/2*a);
+               x2=((-b)-(sqrt(aux))/2*a);
+               cout<<"El resultado de X1 es: "<<x1<<endl;
+               cout<<"El resultado de X2 es: "<<x2<<endl;
+            }
+         else
+           { cout<<"solucion imaginaria";
+           }
+         }
+  getch();
+
+}
+
+　
+
+float distriminante (float a, float b, float c)
+
+{float aux,x2,x,x1;
+    aux=((b*b)-(4*a*c));
+    return aux;
+}
