@@ -1,0 +1,99 @@
+-------- .h--------------
+#pragma once
+#include <iostream>
+// Manejar el formato de la clase
+using namespace std;
+ 
+#define STACK_SIZE 256 /* capacidad máxima */
+typedef char arreglo[STACK_SIZE];//Define un nuevo tipo de dato
+class stack {
+	 
+	int sp; /* puntero de lectura/escritura */
+	int items; /* número de elementos en lista */
+	int itemsize; /* tamaño del elemento */
+	arreglo pila;	 /* el arreglo */
+	 
+public:
+		// constructor
+		stack();
+		// destructor
+		~stack();
+	 /* regresa el número de elementos en lista */
+	int size(); 
+	 
+	/* regresa 1 si no hay elementos en la lista, o sea, si la lista está vacia */
+	int empty(); 
+	 
+	/* insertar elemento a la lista */
+	int put(char d);
+	 
+	/* retirar elemento de la lista */
+	int get();
+	 
+}; // fin de clase Stack
+
+---------.cpp------------
+#include "StdAfx.h"
+#include "stack.h"
+
+
+stack::stack(void)
+{
+	sp = STACK_SIZE-1;
+	items = 0;
+	itemsize = 1;
+		 
+}
+
+
+stack::~stack(void)
+{
+}
+int stack::size() { return items; }
+	 
+	/* regresa 1 si no hay elementos en la lista, o sea, si la lista está vacia */
+int stack::empty() { return items == 0; }
+	 
+	/* insertar elemento a la lista */
+int stack::put(char d)
+	{
+		if ( sp >= 0) {
+			pila[sp] = d;
+			sp --;
+			items ++;
+		}
+		return d;
+	}
+	 
+	/* retirar elemento de la lista */
+int stack::get()
+	{
+		if ( ! empty() ) {
+			sp ++;
+			items --;
+		}
+		return pila[sp];
+	}
+  
+  ---------Ejemplo.cpp-----------
+  #include "Stdafx.h"
+#include "stack.h"
+
+int main()
+{
+    int d;
+    stack s;  // s es un objeto (instancia) de la clase Stack
+ 
+    // llenando la pila
+    for (d='A'; d<='Z'; d++) 
+		s.put(d);
+ 
+    cout << "Items =" << s.size() << endl; 
+ 
+    // vaciando la pila
+    while ( s.size() ) cout << (char)s.get() << " ";
+ 
+    cout << "\nPara terminar oprima <Enter>...";
+    cin.get();
+    return 0;
+}
